@@ -8,6 +8,8 @@ user_private_router = Router()
 async def  start__cmd(message: types.Message) -> None:
     await message.answer('Это команда старт')
 
-@user_private_router.message(Command('жамк', prefix='!'))
-async def zhamk(message: types.Message) -> None:
-    await message.answer('Челик жамкнул другого челика')
+    
+@user_private_router.message()
+async def  echo(message: types.Message) -> None:
+    await message.answer(message.text)
+    

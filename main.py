@@ -9,6 +9,7 @@ load_dotenv(find_dotenv())
 
 from handlers.user_private import user_private_router
 from handlers.user_chat import user_chat_router
+from handlers.admin_private import admin_router
 from common.bot_cmds_list import private
 
 
@@ -19,6 +20,7 @@ dp = Dispatcher()
 
 dp.include_router(user_private_router)
 dp.include_router(user_chat_router)
+dp.include_router(admin_router) 
 
 async def main() -> None:
     await bot.delete_webhook(drop_pending_updates=True)

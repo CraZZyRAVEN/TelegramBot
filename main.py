@@ -16,6 +16,8 @@ from common.bot_cmds_list import private
 ALLOWED_UPDATES = ['message', 'edited_message']
 
 bot = Bot(token=os.getenv('TOKEN'))
+bot.my_admins_list = []
+
 dp = Dispatcher()
 
 dp.include_router(user_private_router)

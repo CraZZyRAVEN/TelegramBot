@@ -15,5 +15,5 @@ async def  start__cmd(message: types.Message) -> None:
     
 @user_private_router.message(F.text == 'жопа')
 async def  echo(message: types.Message) -> None:
-    await message.answer('Это магический фильтр:' + message.text)
+    await message.answer(f'Твой айди: {message.from_user.id}')
     

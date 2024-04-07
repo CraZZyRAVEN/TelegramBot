@@ -26,12 +26,12 @@ def get_keyboard(
     
     for index, text in enumerate(btns, start=0):
         if request_contact and request_contact == index:
-            keyboard.add(KeyboardButton(text, request_contact=True))
+            keyboard.add(KeyboardButton(text=text, request_contact=True))
             
         elif request_location and request_location == index:
-            keyboard.add(KeyboardButton(text, request_location=True))
+            keyboard.add(KeyboardButton(text=text, request_location=True))
             
         else:
-            keyboard.add(KeyboardButton(text))
+            keyboard.add(KeyboardButton(text=text))
     
     return keyboard.adjust(*sizes).as_markup(resize_keyboard=True, input_field_placeholder=placeholder)

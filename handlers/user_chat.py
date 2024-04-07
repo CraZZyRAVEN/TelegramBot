@@ -9,6 +9,18 @@ user_chat_router = Router()
 user_chat_router.message.filter(ChatTypeFilter(['group', 'supergroup']))
 
 
+@user_chat_router.message(Command('admin'))
+async def get_adminns(message: types.Message, bot: Bot) -> None:
+    chat_id = message.chat.id
+    admins_list = await bot.get_chat_administrators(chat_id)
+    admins_list = [admin.user.id for admin in admins_list if admin.status == 'creator' or admin.status == 'administrator']
+    bot.my_admins_list = admins_list
+    if message.from_user.id in admins_list:
+        await message.delete()
+    else:
+        await message.answer('Личные данные пользователей чата были пересланы вам в личные сообщения.')
+        await bot.send_message(message.from_user.id, 'Тебя заскамили :)')
+
 @user_chat_router.edited_message()
 @user_chat_router.message()
 async def cleaner(message: types.Message) -> None:

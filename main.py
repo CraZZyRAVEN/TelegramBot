@@ -7,6 +7,7 @@ from aiogram.filters import CommandStart
 from dotenv import find_dotenv, load_dotenv
 load_dotenv(find_dotenv())
 
+from database.engine import create_db
 from handlers.user_private import user_private_router
 from handlers.user_chat import user_chat_router
 from handlers.admin_private import admin_router
@@ -25,6 +26,7 @@ dp.include_router(user_chat_router)
 dp.include_router(admin_router) 
 
 async def main() -> None:
+    await create_db()
     await bot.delete_webhook(drop_pending_updates=True)
     await bot.delete_my_commands(scope=types.BotCommandScopeAllPrivateChats())
     #await bot.set_my_commands(commands=private, scope=types.BotCommandScopeAllPrivateChats())
